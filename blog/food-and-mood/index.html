@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Meghan Womack Nutrition - Bozeman, Montana - Food and Mood</title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is a description">
+    <meta name="keywords" content="add, keywords, here">
+    <meta name="author" content="Meghan Womack">
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-11744415-16', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <script src="/js_code.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function (event) {
+            console.log('doc is ready')
+        })
+
+
+        function SubForm() {
+            // another method of getting the data
+            // var formElement = document.getElementById("myform_id");
+            // var formData = new FormData(formElement);
+            // console.log(formData);
+            /////
+
+            var formElements = document.getElementById("contact_submit").elements;
+            var postData = {};
+            for (var i = 0; i < formElements.length; i++)
+                if (formElements[i].type != "submit")//we dont want to include the submit-buttom
+                    postData[formElements[i].name] = formElements[i].value;
+
+            console.log("post data new ->", postData)
+
+
+            // let axiosConfig = {
+            //     headers: {
+            //         'Content-Type': 'application/json;charset=UTF-8',
+            //         "Access-Control-Allow-Origin": "*",
+            //     }
+            // };
+
+
+            // axios.post(
+            //     'https://2betc5bc6i.execute-api.us-west-2.amazonaws.com/default/mwn_contact_email',
+            //     JSON.stringify(postData),
+            //     axiosConfig
+            // )
+            //     .then((response) => {
+            //         console.log('Success response...')
+            //         console.log(response);
+            //     }, (error) => {
+            //         console.log('Errored response...')
+            //         console.log(error);
+            //     });
+
+            //confirmClearForm()
+
+            // axios.post({
+            //     method: 'post',
+            //     url: 'https://2betc5bc6i.execute-api.us-west-2.amazonaws.com/default/mwn_contact_email',
+            //     data: JSON.stringify(postData),
+            //     // headers: {
+            //     //     'Access-Control-Allow-Origin': '*',
+            //     //     'Access-Control-Allow-Credentials': true,
+            //     // }
+            // }).then((response) => {
+            //     console.log(response);
+            // }, (error) => {
+            //     console.log(error);
+            // });
+
+
+            // var ll = jQuery('#contact_submit').serializeArray()
+            // var indexed_array = {};
+            // jQuery.map(ll, function (n, i) {
+            //     indexed_array[n['name']] = n['value'];
+            // });
+
+            // console.log("post data old ->", indexed_array)
+
+            // headers: {
+            //     'Access-Control-Allow-Origin': '*',
+            //     'Access-Control-Allow-Credentials': true,
+            // }
+
+            // headers: { 'Access-Control-Allow-Origin': '*' }
+
+            // console.log(indexed_array);
+
+            jQuery.ajax({
+                url: 'https://2betc5bc6i.execute-api.us-west-2.amazonaws.com/default/mwn_contact_email',
+                type: 'post',
+                data: JSON.stringify(postData),
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true,
+                },
+                success: function (result, status, xhr) {
+                    console.log('Success response...', result)
+                    confirmClearForm()
+                },
+                error: function (xhr, status, error) {
+                    console.log('Errored response...', error)
+                    confirmClearForm()
+
+                }
+            });
+        }
+
+        function confirmClearForm() {
+            var form = document.getElementById("contact_submit")
+            form.reset();
+
+            alert("Message recieved! You will hear back from me shortly!");
+
+            var elements = form.elements;
+            for (var i = 0, len = elements.length; i < len; ++i) {
+                elements[i].readOnly = true;
+            }
+        }
+
+
+    </script>
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header class="container">
+
+        <div id="branding">
+            <!-- <h1><span class="highlight">Meghan Womack Nutrition</span></h1> -->
+            <a href="/"><img class='logo' src='/static/MeghanLogo_1.png'></a>
+        </div>
+        <div></div>
+        <nav>
+            <ul>
+                <li><a href="/about">About</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/expectations">Expectations</a></li>
+                <li><a href="/insurance">Insurance</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--        <header id="banner" class="body">-->
+    <!--                <h1><a href="/">Meghan Womack Nutrition - Bozeman, Montana</a></h1>-->
+    <!--        </header>&lt;!&ndash; /#banner &ndash;&gt;-->
+    <!--        <nav id="menu"><ul>-->
+    <!--        -->
+    <!--        -->
+    <!--          -->
+    <!--            <li><a href="/about/">About</a></li>-->
+    <!--          -->
+    <!--            <li><a href="/contact/">Contact</a></li>-->
+    <!--          -->
+    <!--            <li><a href="/expectations/">What to Expect from Nutrition Therapy</a></li>-->
+    <!--          -->
+    <!--            <li><a href="/insurance/">Insurance</a></li>-->
+    <!--          -->
+    <!--            <li><a href="/services/">Services</a></li>-->
+    <!--          -->
+    <!--        -->
+    <!--        -->
+    <!--          -->
+    <!--            <li  class="active"><a href="/category/blog.html">Blog</a></li>-->
+    <!--          -->
+    <!--        -->
+    <!--        </ul></nav>&lt;!&ndash; /#menu &ndash;&gt;-->
+
+<div style="background-color: var(--primary-color);">
+  <h2 style="padding-bottom: 5px; padding-left: 20px;" class='container primary-text'>Blog</h2>
+</div>
+<section id="" class="white-section">
+
+  <div class='container'>
+    <div class='blog-page-header-container'>
+      <h2 class="post-title" title="Permalink to Food and Mood">
+        Food and Mood
+      </h2>
+      <p class="post-date" datetime="2016-12-05T10:20:00-07:00">
+        Mon 05 December 2016
+      </p>
+    </div>
+    <div class="" style="background-color: white;">
+
+      <!--  -->
+      <p class="text-green author">
+        By         <!-- <a class="url fn" href="/author/meghan-womack.html"> -->
+        Meghan Womack
+        <!-- </a> -->
+      </p>
+      <!--       <div class="category">
+        Category: <a href="/category/blog.html">Blog</a>
+      </div>
+ -->
+      <!--  -->
+    </div><!-- /.post-info -->
+    <div class="">
+      <img class="page-img" src="/static/25564.jpg" alt="">
+
+      <p>Hormones, nutrients, and neurotransmitters play directly into how we feel throughout our days. What we choose to eat affects our body’s ability to produce neurotransmitters that affect how we feel. In addition to this, our body has mechanisms in place to push us to eat certain foods (even crave them) to make sure we get the nutrients we need to keep our bodies functioning.</p>
+<p>This blog’s main points are summarized in the following:</p>
+<ul>
+<li>Food impacts our moods on a hour to hour basis</li>
+<li>The release of neurotransmitters that influence how we feel are made from food or are released after we eat.</li>
+<li>Serotonin is a neurotransmitter that helps us to think clearly, sleep well and feel good.</li>
+<li>We need both protein and carbohydrate throughout the day to make serotonin.</li>
+<li>Neuropeptides are released in response to changes in blood chemistry to make us crave carbohydrates or fats.</li>
+<li>Each person has a different neurotransmitter profile and may require more careful control of their nutrition in order to have a balanced mood.</li>
+<li>Deprivation of types of foods leads to higher levels of food-craving hormones and may trigger overeating or binging.</li>
+</ul>
+<p>Food and mood. Apart from the fact that the two words rhyme, what do they have to do with one another? Sure, we often say things like, “boy, I’m in the mood for a donut!” But does that really mean anything? Turns out, it probably does!</p>
+<p>I chose this topic as something to bring to the community initially because I find the signs of a low blood sugar to be some of the best indicators that we need nutrition in the form of both meals and snacks during the day. Physical signs of a low blood sugar can include shakiness, stumbling, fogginess (i.e. not being able to think very clearly), and irritability. For me, irritability is a very strong indicator that I need to eat something. Sometimes, I feel this well before I feel shaky or foggy. I’ll find myself grumbling under my breath while I’m driving around town doing errands and then feeling a small sense that the world has come close to ending when I drop my keys while trying to unlock my car. This is not a fun feeling! So I’ve often used the fluctuations of blood sugar and the uncomfortable feelings that accompany this as a motivator for my clients to start portioning out their food throughout the day. It’s a nice way to ensure that individuals are getting adequate nutrition and variety as they move from morning to bedtime in addition to helping them feel more focused and present during the day. A good ol’ fashioned win-win.</p>
+<p><strong>If we are managing our blood glucose levels in a smart way, we are likely to be eating in a pretty healthy way that can prevent chronic disease down the road. HUGE bonus!</strong> </p>
+<p>But as so often happens when I dig a little deeper into a nutrition concept, I found that there is much more to our moods than simple blood glucose control. There is a complex system that plays on our desire to have a balanced mood throughout the day in order to help us to meet our nutrient needs. Neurotransmitters, those chemical messengers that help our nerve cells talk to each other, are the key players in this system. Blood sugar levels, in addition to levels of fat in our blood as well as proteins, are used as indicators for which neurotransmitters the brain wants to produce.</p>
+<p>Let’s begin with the neurotransmitter that impacts our moods the most and is most recognizable. Serotonin. Serotonin is a neurotransmitter that works on different areas of the brain to improve mood and thinking ability. Our bodies must make serotonin using the amino acid, tryptophan. Amino acids are the tiny building blocks of proteins. When we eat protein-containing foods, out body breaks the protein down into it’s building blocks and absorbs the amino acids into the blood. From there, the amino acids (20 in total) are used for a million different jobs in the body. Tryptophan is an amino acid that we must get from food in order to produce serotonin in the body. So you would think that eating protein would help us to make serotonin. Turns out, it isn’t that simple (of course). Tryptophan competes for absorption across the blood brain barrier with other amino acids and is not a strong competitor. Other amino acids seem to be absorbed more easily thus leaving tryptophan out by it’s lonesome, never to be turned to serotonin. <em>sigh</em> Thankfully, the body has this figured out. By consuming carbohydrate with protein, an insulin response is stimulated. An insulin response means insulin is produced by the pancreas and put into the blood stream. We need insulin in order to get carbohydrate from the blood into the cells. Without insulin, we cannot make energy from carbohydrate. Turns out insulin helps the body use the other amino acids that tend to block out tryptophan from absorption into the brain which leaves absorption sites open and ready for tryptophan. Tryptophan is able to get into the brain and is turned into serotonin for the brain cells to use or store. So why is serotonin important? Serotonin is the neurotransmitter that many anti-depressants are working on in order for people struggling with depression to feel less depressed. It’s an important neurotransmitter to the brain and because of it’s importance, the body has developed ways to make sure we are able to make serotonin when we need it (aka makes sure we can utilize tryptophan for serotonin production).</p>
+<p>So that old myth that Thanksgiving turkey makes us sleepy isn’t really true. It’s thanksgiving turkey along with mashed potatoes that makes us sleepy. Turkey alone can’t really do it.</p>
+<p><img alt="fm" src="/static/2016/12/screen-shot-2016-12-05-at-3.41.39-pm.png"></p>
+<p>TRY stands for tryptophan, AA stands for amino acid, CHO stands for carbohydrate.</p>
+<p>Another neurotransmitter that affects our moods is called neuropeptide Y (NPY). This neurotransmitter stimulates our appetite for carbohydrates. It is released in the brain when our blood sugar is low so that we begin to think more about carbohydrate containing foods in the hopes that we will then eat some carbs. NPY levels are at their highest in the mornings when our blood sugar is naturally lower after not having eaten during the night while we were sleeping. This early morning carb craving helps us to not only correct our low blood sugar, but to begin the day with a boost of serotonin to get us going in the morning.</p>
+<p>Something else that plays into our desire for carbohydrate rich foods seems to be stress. Stress causes us to release cortisol which acts on the body in a lot of ways. One of these ways is for us to crave and consume carbohydrate rich foods in order to secure a good blood sugar level. This is done by stimulating the brain to release NPY.</p>
+<p><img alt="fm" src="/static/2016/12/screen-shot-2016-12-05-at-3.37.04-pm.png"></p>
+<p>BG stands for blood glucose, NPY stands for neuropeptide Y, CHO stands for carbohydrate.</p>
+<p>Why such a focus on carbohydrate containing foods and not proteins? We have a reservoir of amino acids in the body that can be used on demand but we don’t have a reservoir of carbohydrates in the same way. If our blood sugar drops and we don’t consume carbohydrates, the body will begin to break down fat tissue and muscle tissue for energy. This is a perfectly fine survivalist mechanism but does nothing to balance out our crappy, hungry mood. So we have neuropeptide Y to help us with this! Once blood sugar levels drop and levels of NPY rise, our bodies are stimulated to seek out carbohydrate rich foods. Once we eat carbs rich, our blood sugar rises, NPY levels fall, we have the cascade of metabolic reactions happening to produce serotonin and our mood is improved.</p>
+<p>So, our body cares a LOT about survival, right? Consuming carbohydrates provides the body with a great source of fuel and helps to conserve fat stores. The body does not like to use fat stores on a regular basis just like we don’t like using our life’s savings to pay the monthly phone bill. We want those savings there for a real emergency. The body feels the same way about our fat stores. This is why blood sugar management is so important to the body. If blood sugar gets too low, that means the body may need to use fat or muscle stores for energy.</p>
+<p>Fat is a part of our food that seems to demand considerable attention despite not having as much direct use within the body like carbohydrates and proteins. Fat is an excellent energy source and is used to make reproductive hormones and to maintain brain cell health. We have developed many systems to ensure our fat stores are adequate, the ultimate “rainy day fund.” This is due to the fact that in the not so distant past, we were highly dependent on our fat stores for survival. As a result, our body doesn’t like to use our fat stores unless absolutely necessary. As we move past breakfast, which often comes with a nice bump in blood sugar after we eat our carbohydrate rich breakfast, our body begins to use fat as an energy source. This is easy and not too stressful for the body if our activity is fairly low. Because the body doesn’t want us to burn too much fat (don’t want to dip into that rainy day fund too much!), a neurotransmitter called Galanin is release to stimulate us to consume fat in our foods. These cravings for fat often come in the form of what are known as “sweets.” Folks often think that they have a sweet tooth when, in fact, they have a “fat” tooth. Fat itself doesn’t taste like much. But add sugar to it and voila! You have something delicious. Many of these “sweets” act to bump our blood sugar as well which is probably why they are such a go-to food when we are feeling really hungry. If we are feeling really hungry, it is likely that our serotonin levels have dropped as well and the brain is looking for both a blood sugar bump and security that the food supply hasn’t dissipated.</p>
+<p><img alt="fm" src="/static/2016/12/screen-shot-2016-12-05-at-3.48.15-pm.png"></p>
+<p>So what does this mean for individuals? Well, it depends on the individual! Research has shown that some individuals seem to be more sensitive to drops in serotonin levels, possibly due to the fact that they are not genetically built to produce adequate serotonin. These are the folks that have a miserable time trying to follow a low carbohydrate diet. These are the folks that find that their moods are much more stable if they eat throughout the day with balanced snacks and keep an eye on physical signs of low blood sugars. Research has also shown that there are individuals that seem to be more sensitive to depletions in fat stores and have a very difficult time resisting cravings when following a very low fat diet. These folks would likely benefit from eating throughout the day with snacks in between meals to prevent increased cravings and to responsibly honor those cravings as to not deprive themselves from the foods that their body is genetically determined to seek out. Deprivation can lead to a heightened pleasure response (release of more neurotransmitters called dopamine and norepinephrine which makes the experience REALLY pleasurable) when the “forbidden” food is eaten which only drives the desire to seek pleasure from food more deeply into the mind of the individual. Indulging in higher fat foods is not only a way to treat yourself, it’s a way to take care of yourself and prevent overeating in the future.</p>
+<p>How can you know what is the best way for your to eat? A food and feelings journal is likely to be the best way. Keep track of how you feel before a meal/snack, log your emotions, and check back in about 30-60 minutes after you’ve eaten. It might take the help of an RD to understand connections between food and feelings, but it’s likely that you have a tendency towards certain types of foods.</p>
+<ul>
+<li>Understand your moods and cravings</li>
+<li>Understand your habits with food</li>
+<li>Eat meals and snacks to spread nutrients throughout the day</li>
+<li>Balance meals and snacks with carbohydrates, proteins and fats</li>
+<li>Don’t deprive yourself of what you crave</li>
+</ul>
+<p><strong>We were born with an exquisitely designed system to manage our food intake. Unfortunately, our world has made it very difficult to maintain a strong connection to this system in our day-to-day lives. Developing awareness to this system is what helps us to eat more intuitively and to prevent chronic diseases down the road.</strong></p>
+    </div><!-- /.entry-content -->
+  </div>
+
+</section>
+
+
+    <footer class='container'>
+        <p>Meghan Womack Nutrition, Copyright &copy; 2018</p>
+    </footer>
+</body>
+
+</html>
