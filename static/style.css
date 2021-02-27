@@ -141,9 +141,7 @@ blockquote > p{
 
 .narrow-headline {
     margin: auto;
-    width: 85%;   
- 
-    /* margin: 3.75em;   */
+    width: 90%;
     position: relative;
 }
 
