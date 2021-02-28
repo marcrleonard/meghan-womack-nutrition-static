@@ -376,14 +376,12 @@ section {
 }
 
 nav {
-    all:unset;
-    height:80px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+
 }
 
 nav ul {
+    align-items: center;
+    height:50px;
     display: flex;
     justify-content: flex-end;
 }
@@ -431,22 +429,24 @@ header {
         display: inline;
     }
     nav {
-        all:unset;
+        padding-left:25%;
+        padding-right:25%;
+    }
+    nav ul {
+        align-items: center;
+        justify-content: center;
         height:40px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-
-    }
-    nav ul {
-
 
         margin: 0 auto;
         padding-left: 0px;
         /*justify-content: flex-end;*/
     }
     nav li {
-        margin-left: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
         list-style: none;
     }
 
